@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://do7dgtwti40dx"]
+
+[ext_resource type="Script" path="res://Scripts/initiativeSystem/initiativeTracker.gd" id="1_sf0gn"]
+[ext_resource type="Script" path="res://Scripts/initiativeSystem/initiativeClient.gd" id="2_md54l"]
+[ext_resource type="Script" path="res://Scripts/initiativeSystem/Testing/SamplePlayer.gd" id="2_r5ih5"]
+
+[node name="Testing1" type="Node2D"]
+
+[node name="Initiative Tracker" type="Node2D" parent="."]
+script = ExtResource("1_sf0gn")
+
+[node name="Characters" type="Node" parent="."]
+
+[node name="Sinclair" type="Node2D" parent="Characters"]
+script = ExtResource("2_r5ih5")
+
+[node name="InitiativeClient" type="Node" parent="Characters/Sinclair"]
+script = ExtResource("2_md54l")
+initiativeName = "Sinclair"
+initiativeBonus = 2
+
+[node name="Ryoshu" type="Node2D" parent="Characters"]
+
+[node name="InitiativeClient" type="Node" parent="Characters/Ryoshu"]
+script = ExtResource("2_md54l")
+initiativeName = "Ryoshu"
+initiativeBonus = 4
+
+[node name="Yi Sang" type="Node2D" parent="Characters"]
+
+[node name="InitiativeClient" type="Node" parent="Characters/Yi Sang"]
+script = ExtResource("2_md54l")
+initiativeName = "Yi Sang"
+
+[node name="Rodya" type="Node2D" parent="Characters"]
+
+[node name="InitiativeClient" type="Node" parent="Characters/Rodya"]
+script = ExtResource("2_md54l")
+initiativeName = "Rodya"
+initiativeBonus = 1
+
+[node name="Buttons" type="Node" parent="."]
+
+[node name="Roll Initiative" type="Button" parent="Buttons"]
+offset_left = 474.0
+offset_top = 230.0
+offset_right = 657.0
+offset_bottom = 284.0
+text = "Roll Initiative"
+
+[node name="Next" type="Button" parent="Buttons"]
+offset_left = 487.0
+offset_top = 366.0
+offset_right = 647.0
+offset_bottom = 407.0
+text = "Next"
+
+[connection signal="pressed" from="Buttons/Roll Initiative" to="Initiative Tracker" method="roll_initiative"]
+[connection signal="pressed" from="Buttons/Next" to="Initiative Tracker" method="next"]
