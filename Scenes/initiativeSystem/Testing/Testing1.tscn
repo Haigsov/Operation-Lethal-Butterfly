@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://do7dgtwti40dx"]
 
-[ext_resource type="Script" path="res://Scripts/initiativeSystem/initiativeTracker.gd" id="1_sf0gn"]
-[ext_resource type="Script" path="res://Scripts/initiativeSystem/initiativeClient.gd" id="2_md54l"]
-[ext_resource type="Script" path="res://Scripts/initiativeSystem/Testing/SamplePlayer.gd" id="2_r5ih5"]
+[ext_resource type="Script" path="res://Scripts/initiativeModule/initiativeTracker.gd" id="1_sf0gn"]
+[ext_resource type="Script" path="res://Scripts/initiativeModule/initiativeClient.gd" id="2_md54l"]
+[ext_resource type="Script" path="res://Scripts/initiativeModule/Testing/SamplePlayer.gd" id="2_r5ih5"]
 
 [node name="Testing1" type="Node2D"]
 
