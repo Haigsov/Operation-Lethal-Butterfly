@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4ojpkterqqob"]
+
+[ext_resource type="Script" path="res://Scripts/toastNotification.gd" id="1_7whjw"]
+
+[node name="CenterContainer" type="CenterContainer"]
+rotation = 0.00174533
+scale = Vector2(0.3, 0.3)
+use_top_left = true
+script = ExtResource("1_7whjw")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "Toast"
+fit_content = true
+autowrap_mode = 0

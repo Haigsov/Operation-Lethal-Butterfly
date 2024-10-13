@@ -21,6 +21,7 @@ func _draw() -> void:
 		return
 		
 		
+	@warning_ignore("unassigned_variable")
 	var drawingPath : Array[Vector2];
 	
 	for cell in pathingmodule.current_id_path:

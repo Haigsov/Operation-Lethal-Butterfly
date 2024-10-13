@@ -1,7 +1,10 @@
 extends Node
 
 
-var _entries = []
+var _entries : Array = []
+
+var currentActiveUnit :
+	get : _entries[0] if _entries.size() > 0 else null;
 
 
 class InitiativeEntry:
@@ -17,6 +20,8 @@ class InitiativeEntry:
 		
 		var rng = RandomNumberGenerator.new()
 		value = rng.randi_range(1,20) + bonus
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

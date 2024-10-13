@@ -3,6 +3,7 @@ extends Node
 #A script to be attached to a child of any node that is supposed to be able to move
 #along a grid.
 
+class_name GridMovementModule
 
 @onready var tile_map = $"../../TileMap"
 
@@ -14,6 +15,11 @@ var target_position: Vector2
 var is_moving: bool
 
 var is_click_to_move_enabled: bool
+
+
+signal on_move; #emitted when movement begins;
+signal on_stop; #emitted when movement stops;
+signal on_step; #emitted every time the character reaches a tile;
 
 func _ready() -> void:
 	astar_grid = AStarGrid2D.new()
@@ -73,17 +79,21 @@ func _physics_process(_delta: float) -> void:
 	if is_moving == false:
 		target_position = tile_map.map_to_local(current_id_path.front())
 		is_moving = true
+		on_move.emit();
 		
 	# Move towards target position
 	node.position = node.position.move_toward(target_position, 1)
 	
 	# When reaching a point, move to the next or stop if path is done
 	if node.position == target_position:
+		
+		on_step.emit();
 		current_id_path.pop_front()
 		
 		if current_id_path.is_empty() == false:
 			target_position = tile_map.map_to_local(current_id_path.front())
 		else:
 			is_moving = false
+			on_stop.emit();
 	
 	

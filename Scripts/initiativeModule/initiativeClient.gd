@@ -1,5 +1,6 @@
 extends Node
 
+class_name InitiativeClient
 
 @export var initiativeName : String
 @export var initiativeBonus : int
@@ -7,6 +8,8 @@ extends Node
 signal on_initiative_roll
 signal on_turn_start
 signal on_turn_change
+
+signal on_turn_end
 
 
 
@@ -17,9 +20,6 @@ func getInitiativeInfo():
 func _ready():	
 	add_to_group("initiative")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func NotifyInitiativeRoll():
 	on_initiative_roll.emit()

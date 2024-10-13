@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ish1214qt84n"]
+[gd_scene load_steps=7 format=3 uid="uid://ish1214qt84n"]
 
 [ext_resource type="Texture2D" uid="uid://cntbb7lp6qwy8" path="res://Art/Tilemaps/tilemap_packed.png" id="1_eknpr"]
-[ext_resource type="PackedScene" uid="uid://cwhv1gpvnkot7" path="res://Scenes/unit/unit.tscn" id="2_gukiw"]
+[ext_resource type="PackedScene" uid="uid://cwhv1gpvnkot7" path="res://Scenes/player/player.tscn" id="2_gukiw"]
 [ext_resource type="Script" path="res://Scripts/path.gd" id="3_msyyu"]
-[ext_resource type="Resource" uid="uid://cmkw2cpj5mbtn" path="res://Resources/Stats/TestPlayerStats.tres" id="4_4rv72"]
-[ext_resource type="Script" path="res://Resources/Traits/trait_loudFootSteps.gd" id="5_hswgu"]
+[ext_resource type="Script" path="res://Scripts/gridMovementModule.gd" id="4_45roh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2kqjd"]
 texture = ExtResource("1_eknpr")
@@ -158,11 +157,6 @@ custom_data_layer_0/name = "walkable"
 custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_2kqjd")
 
-[sub_resource type="Resource" id="Resource_4r5lf"]
-script = ExtResource("5_hswgu")
-name = "Unnamed Trait"
-description = "No Description"
-
 [node name="Node2D" type="Node2D"]
 position = Vector2(96, 96)
 scale = Vector2(5, 5)
@@ -177,10 +171,10 @@ position = Vector2(7.66667, 11)
 script = ExtResource("3_msyyu")
 
 [node name="Player" parent="." instance=ExtResource("2_gukiw")]
-position = Vector2(8, 8)
-stats = ExtResource("4_4rv72")
-traits = Array[Resource("res://Resources/Traits/traitBase.gd")]([SubResource("Resource_4r5lf")])
+
+[node name="GridMovementModule" type="Node2D" parent="Player"]
+script = ExtResource("4_45roh")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
-[editable path="Player"]
+[node name="Node2D" type="Node2D" parent="."]
