@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bleqvcq68x0k8"]
+
+[ext_resource type="PackedScene" uid="uid://cwhv1gpvnkot7" path="res://scenes/player/player.tscn" id="1_dbnp7"]
+[ext_resource type="PackedScene" uid="uid://bx68w21y0i4m7" path="res://scenes/enemy/enemy.tscn" id="1_komle"]
+[ext_resource type="PackedScene" uid="uid://cqb0q8rs3lwwc" path="res://scenes/accuracy/get_accuracy.tscn" id="2_to1lj"]
+
+[node name="Testing2" type="Node2D"]
+
+[node name="Enemy" parent="." instance=ExtResource("1_komle")]
+position = Vector2(837, 231)
+
+[node name="GetAccuracy" parent="." instance=ExtResource("2_to1lj")]
+
+[node name="Player" parent="." instance=ExtResource("1_dbnp7")]
+position = Vector2(745, 244)

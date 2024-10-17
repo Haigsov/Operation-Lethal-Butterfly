@@ -5,7 +5,7 @@ extends CharacterBody2D
 # -Jody
 func _ready() -> void:
 	pass
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	pass
 	
 
