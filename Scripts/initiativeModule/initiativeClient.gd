@@ -29,4 +29,3 @@ func NotifyTurnStart():
 
 func NotifyTurnChange():
 	on_turn_change.emit()
-

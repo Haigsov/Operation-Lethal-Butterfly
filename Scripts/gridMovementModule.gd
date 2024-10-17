@@ -12,6 +12,8 @@ var astar_grid: AStarGrid2D
 var current_id_path: Array[Vector2i]
 var target_position: Vector2
 var is_moving: bool
+var movement_limit: int
+var count: int
 
 var is_click_to_move_enabled: bool
 
@@ -26,6 +28,10 @@ func _ready() -> void:
 	astar_grid.cell_size = Vector2(16, 16)
 	# Disable diagonal movement in the astar_grid
 	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
+	# Doesn't have to be 3
+	movement_limit = 3
+	# Keeps track of how many moves player made
+	count = 0
 	
 	is_click_to_move_enabled = true;
 	
@@ -77,13 +83,21 @@ func _physics_process(_delta: float) -> void:
 	# Move towards target position
 	node.position = node.position.move_toward(target_position, 1)
 	
+	# Makes the player stop moving if they reach the movement limit
+	if count == movement_limit:
+		current_id_path.clear()
+		is_moving = false
+		count = 0
+	
 	# When reaching a point, move to the next or stop if path is done
 	if node.position == target_position:
 		current_id_path.pop_front()
+		count += 1
 		
 		if current_id_path.is_empty() == false:
 			target_position = tile_map.map_to_local(current_id_path.front())
 		else:
+			count = 0
 			is_moving = false
 	
 	
