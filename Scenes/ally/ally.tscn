@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfpgdy1woai55"]
+
+[ext_resource type="Script" path="res://Scripts/ally.gd" id="1_g432x"]
+[ext_resource type="Texture2D" uid="uid://cntbb7lp6qwy8" path="res://Art/Tilemaps/tilemap_packed.png" id="2_gfj0f"]
+[ext_resource type="Script" path="res://Scripts/gridMovementModule.gd" id="3_ugb0s"]
+[ext_resource type="Script" path="res://Scripts/initiativeModule/initiativeClient.gd" id="4_l5nld"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c21gr"]
+atlas = ExtResource("2_gfj0f")
+region = Rect2(0, 112, 16, 16)
+
+[node name="Ally" type="Node2D"]
+scale = Vector2(7, 7)
+script = ExtResource("1_g432x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = SubResource("AtlasTexture_c21gr")
+
+[node name="GridMovementModule" type="Node2D" parent="."]
+script = ExtResource("3_ugb0s")
+
+[node name="InitiativeClient" type="Node2D" parent="."]
+script = ExtResource("4_l5nld")

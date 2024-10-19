@@ -35,3 +35,7 @@ func _draw() -> void:
 	# draws a red line highlighting the player's path
 	if (drawingPath.size() > 1):
 		draw_polyline(drawingPath, Color.RED)
+
+
+func _on_end_turn_pressed() -> void:
+	pass # Replace with function body.

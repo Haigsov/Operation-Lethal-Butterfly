@@ -33,6 +33,3 @@ func _process(delta):
 	if (_fadeProgress <= 0):
 		queue_free();
 	position = position + movement_direction * motionSpeed * delta;
-
-
-
