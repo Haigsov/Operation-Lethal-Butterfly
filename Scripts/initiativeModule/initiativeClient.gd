@@ -1,5 +1,6 @@
 extends Node
 
+class_name InitiativeClient;
 
 @export var initiativeName : String
 @export var initiativeBonus : int
@@ -7,19 +8,16 @@ extends Node
 signal on_initiative_roll
 signal on_turn_start
 signal on_turn_change
-
-
+signal on_turn_end
 
 func getInitiativeInfo():
 	return {"name": initiativeName, "bonus": initiativeBonus}
 
-# Called when the node enters the scene tree for the first time.
-func _ready():	
-	add_to_group("initiative")
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func start_combat(units : Array[Unit]):
+	var clients : Array[InitiativeClient];
+	for unit in units:
+		clients.append(unit.initiativeModule);
+	InitiativeTracker.instance.start_combat(clients);
 
 func NotifyInitiativeRoll():
 	on_initiative_roll.emit()
@@ -29,4 +27,6 @@ func NotifyTurnStart():
 
 func NotifyTurnChange():
 	on_turn_change.emit()
-
+	
+func end_turn():
+	InitiativeTracker.instance.next_turn();

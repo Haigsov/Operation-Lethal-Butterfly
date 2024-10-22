@@ -1,13 +1,13 @@
-[gd_scene load_steps=12 format=4 uid="uid://ish1214qt84n"]
+[gd_scene load_steps=13 format=4 uid="uid://ish1214qt84n"]
 
 [ext_resource type="Texture2D" uid="uid://cntbb7lp6qwy8" path="res://Art/Tilemaps/tilemap_packed.png" id="1_eknpr"]
-[ext_resource type="Script" path="res://Scripts/initiativeModule/initiativeTracker.gd" id="3_klw0v"]
+[ext_resource type="PackedScene" uid="uid://cwhv1gpvnkot7" path="res://Scenes/unit/unit.tscn" id="2_gukiw"]
 [ext_resource type="Script" path="res://Scripts/path.gd" id="3_msyyu"]
-[ext_resource type="PackedScene" uid="uid://cfpgdy1woai55" path="res://Scenes/ally/ally.tscn" id="4_3j0e7"]
+[ext_resource type="Resource" uid="uid://cmkw2cpj5mbtn" path="res://Resources/Stats/TestPlayerStats.tres" id="4_4rv72"]
 [ext_resource type="Script" path="res://Resources/Traits/traitBase.gd" id="5_5q7n5"]
 [ext_resource type="Script" path="res://Resources/Traits/trait_loudFootSteps.gd" id="5_hswgu"]
-[ext_resource type="Script" path="res://Scripts/Testing/manualMenuButtons.gd" id="7_jbv6h"]
-[ext_resource type="PackedScene" uid="uid://cr34xwlwf1fpr" path="res://Scenes/Enemy/basicEnemy.tscn" id="8_qcoda"]
+[ext_resource type="Script" path="res://Scripts/Testing/manualBeginCombat.gd" id="7_jbv6h"]
+[ext_resource type="Script" path="res://Resources/Stats/stats.gd" id="8_os8ci"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2kqjd"]
 texture = ExtResource("1_eknpr")
@@ -161,10 +161,26 @@ custom_data_layer_0/name = "walkable"
 custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_2kqjd")
 
-[sub_resource type="Resource" id="Resource_oukhh"]
+[sub_resource type="Resource" id="Resource_4r5lf"]
 script = ExtResource("5_hswgu")
 name = "Unnamed Trait"
 description = "No Description"
+
+[sub_resource type="Resource" id="Resource_2x2r2"]
+script = ExtResource("8_os8ci")
+current_health = 0
+armor = 0
+war_dice = 0
+base_max_health = 6
+base_forceful = 0
+base_reflexive = 0
+base_tactical = 0
+base_willful = 0
+bonus_max_health = 0
+bonus_forceful = 0
+bonus_reflexive = 0
+bonus_tactical = 0
+bonus_willful = 0
 
 [node name="Node2D" type="Node2D"]
 scale = Vector2(5, 5)
@@ -178,18 +194,14 @@ tile_set = SubResource("TileSet_0hbqf")
 position = Vector2(7.66667, 11)
 script = ExtResource("3_msyyu")
 
-[node name="InitiativeTracker" type="Node2D" parent="."]
-script = ExtResource("3_klw0v")
+[node name="Player" parent="." instance=ExtResource("2_gukiw")]
+position = Vector2(8, 8)
+stats = ExtResource("4_4rv72")
+traits = Array[ExtResource("5_5q7n5")]([SubResource("Resource_4r5lf")])
 
-[node name="Ally" parent="." instance=ExtResource("4_3j0e7")]
-position = Vector2(41.6, -24.4)
-scale = Vector2(7, 7)
-traits = Array[ExtResource("5_5q7n5")]([SubResource("Resource_oukhh")])
+[node name="Camera2D" type="Camera2D" parent="Player"]
 
-[node name="Camera2D" type="Camera2D" parent="Ally"]
-scale = Vector2(1, 1)
-
-[node name="TestingMenu" type="Control" parent="Ally/Camera2D" node_paths=PackedStringArray("Units", "Player")]
+[node name="Control" type="Control" parent="Player/Camera2D"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -16.3143
@@ -197,11 +209,8 @@ offset_top = -9.14286
 offset_right = 23.6857
 offset_bottom = 30.8571
 scale = Vector2(0.0245847, 0.0245847)
-script = ExtResource("7_jbv6h")
-Units = [NodePath("../.."), NodePath("../../../Enemy2"), NodePath("../../../Enemy")]
-Player = NodePath("../..")
 
-[node name="BeginCombat" type="Button" parent="Ally/Camera2D/TestingMenu"]
+[node name="Button" type="Button" parent="Player/Camera2D/Control" node_paths=PackedStringArray("Player")]
 layout_mode = 0
 offset_left = -48.2
 offset_top = -18.3429
@@ -210,42 +219,14 @@ offset_bottom = 12.6571
 scale = Vector2(1.35826, 1.35826)
 mouse_default_cursor_shape = 2
 text = "Manual Start Combat"
+script = ExtResource("7_jbv6h")
+Player = NodePath("../../..")
 
-[node name="Move" type="Button" parent="Ally/Camera2D/TestingMenu"]
-layout_mode = 0
-offset_left = -46.4859
-offset_top = 46.4867
-offset_right = 129.514
-offset_bottom = 80.4867
-scale = Vector2(1.335, 1.335)
-text = "Move"
+[node name="Unit" parent="." instance=ExtResource("2_gukiw")]
+position = Vector2(72, -2)
+stats = SubResource("Resource_2x2r2")
 
-[node name="End Turn" type="Button" parent="Ally/Camera2D/TestingMenu"]
-layout_mode = 0
-offset_left = -35.0
-offset_top = 114.0
-offset_right = 135.0
-offset_bottom = 151.0
-scale = Vector2(1.345, 1.345)
-text = "End Turn"
+[connection signal="pressed" from="Player/Camera2D/Control/Button" to="Player/Camera2D/Control/Button" method="_on_pressed"]
 
-[node name="End Combat" type="Button" parent="Ally/Camera2D/TestingMenu"]
-layout_mode = 0
-offset_left = -28.0
-offset_top = 193.0
-offset_right = 138.0
-offset_bottom = 235.0
-scale = Vector2(1.345, 1.345)
-text = "End Combat
-"
-
-[node name="Enemy" parent="." instance=ExtResource("8_qcoda")]
-position = Vector2(57.8, 8.2)
-
-[node name="Enemy2" parent="." instance=ExtResource("8_qcoda")]
-position = Vector2(104.4, 8)
-
-[connection signal="pressed" from="Ally/Camera2D/TestingMenu/BeginCombat" to="Ally/Camera2D/TestingMenu" method="_on_begin_combat_pressed"]
-[connection signal="pressed" from="Ally/Camera2D/TestingMenu/Move" to="Ally/Camera2D/TestingMenu" method="_on_move_pressed"]
-[connection signal="pressed" from="Ally/Camera2D/TestingMenu/End Turn" to="Ally/Camera2D/TestingMenu" method="_on_end_turn_pressed"]
-[connection signal="pressed" from="Ally/Camera2D/TestingMenu/End Combat" to="Ally/Camera2D/TestingMenu" method="_on_end_combat_pressed"]
+[editable path="Player"]
+[editable path="Unit"]
