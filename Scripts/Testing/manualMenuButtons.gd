@@ -43,13 +43,20 @@ func _on_begin_combat_pressed() -> void:
 	endCombatBtn.disabled = false;
 
 func _on_move_pressed() -> void:
+	
 	if Player.movement_allowance <= 0:
 		print("You cant move anymore!")
 		return;
+		
 	print("Click to move. You can move %d more spaces!" % Player.movement_allowance);
-	awaitingMove = true;
-	var dest = await _clicked_on_tile;
-	Player.move(dest);
+	
+	var successfulMovement : bool = false;
+	while !successfulMovement:
+		var dest = 	await CellSelector.new(get_tree().root, tile_map, 
+			(func(v : Vector2i) -> bool : return Player.get_distance_to(v) <= Player.movement_allowance),
+			true, Player.get_cell_position()).cell_selected;
+		successfulMovement = Player.move(dest);
+		print(successfulMovement);
 	await Player.gridMovementModule.on_stop;
 	print("You can still move %d more spaces!" % Player.movement_allowance);
 	
