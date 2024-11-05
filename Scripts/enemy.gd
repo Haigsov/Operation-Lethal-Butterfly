@@ -16,3 +16,11 @@ func superdumbai():
 	textWriter.spawn_toast(get_tree().root, global_position + Vector2(0, -32), "So I'm just gonna end my turn now.", Color.RED);
 	await get_tree().create_timer(1.5).timeout
 	initiativeModule.end_turn();
+
+# Check if there is a player in the range to fight - Iyana
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	print("Time to fight the player!!")
+
+
+func _on_area_2d_area_exited(area: Area2D) -> void:
+	print("There's no one to fight....")

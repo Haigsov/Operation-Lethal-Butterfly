@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cr34xwlwf1fpr"]
+[gd_scene load_steps=9 format=3 uid="uid://cr34xwlwf1fpr"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_yk2vs"]
 [ext_resource type="Texture2D" uid="uid://cntbb7lp6qwy8" path="res://Art/Tilemaps/tilemap_packed.png" id="2_d8kdb"]
@@ -26,6 +26,9 @@ bonus_willful = 0
 atlas = ExtResource("2_d8kdb")
 region = Rect2(81, 112, 15, 16)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_mhcts"]
+radius = 3.95123
+
 [node name="Enemy" type="Node2D"]
 scale = Vector2(7, 7)
 script = ExtResource("1_yk2vs")
@@ -40,3 +43,11 @@ script = ExtResource("3_d5tjv")
 
 [node name="InitiativeClient" type="Node2D" parent="."]
 script = ExtResource("4_ha6i7")
+
+[node name="InOutCombatDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InOutCombatDetection"]
+shape = SubResource("CircleShape2D_mhcts")
+
+[connection signal="area_entered" from="InOutCombatDetection" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="InOutCombatDetection" to="." method="_on_area_2d_area_exited"]

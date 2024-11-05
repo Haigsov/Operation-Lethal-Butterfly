@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfpgdy1woai55"]
+[gd_scene load_steps=7 format=3 uid="uid://cfpgdy1woai55"]
 
 [ext_resource type="Script" path="res://Scripts/ally.gd" id="1_g432x"]
 [ext_resource type="Texture2D" uid="uid://cntbb7lp6qwy8" path="res://Art/Tilemaps/tilemap_packed.png" id="2_gfj0f"]
@@ -8,6 +8,9 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_c21gr"]
 atlas = ExtResource("2_gfj0f")
 region = Rect2(0, 112, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ceev"]
+radius = 4.71429
 
 [node name="Ally" type="Node2D"]
 scale = Vector2(7, 7)
@@ -22,3 +25,11 @@ script = ExtResource("3_ugb0s")
 
 [node name="InitiativeClient" type="Node2D" parent="."]
 script = ExtResource("4_l5nld")
+
+[node name="InOutCombatDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InOutCombatDetection"]
+shape = SubResource("CircleShape2D_2ceev")
+
+[connection signal="area_entered" from="InOutCombatDetection" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="InOutCombatDetection" to="." method="_on_area_2d_area_exited"]
