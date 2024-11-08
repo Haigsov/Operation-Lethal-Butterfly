@@ -53,6 +53,3 @@ func _updatePathing():
 func _exit_tree():
 	for t in traits:
 		t.disable(self);
-		
-		
-		

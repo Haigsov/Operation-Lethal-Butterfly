@@ -34,6 +34,12 @@ move={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Enemy"
+2d_physics/layer_2="Ally"
+2d_physics/layer_3="Objects"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
