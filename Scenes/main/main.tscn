@@ -203,8 +203,11 @@ script = ExtResource("2_c0cx8")
 script = ExtResource("3_klw0v")
 
 [node name="Ally" parent="." instance=ExtResource("4_3j0e7")]
-position = Vector2(41.6, -24.4)
-traits = Array[ExtResource("5_w4vkd")]([SubResource("Resource_rcgy3")])
+
+
+position = Vector2(79.4, -21)
+traits = Array[ExtResource("5_5q7n5")]([SubResource("Resource_oukhh")])
+
 
 [node name="Camera2D" type="Camera2D" parent="Ally"]
 
@@ -217,7 +220,7 @@ offset_right = 23.6857
 offset_bottom = 30.8571
 scale = Vector2(0.0245847, 0.0245847)
 script = ExtResource("7_jbv6h")
-Units = [NodePath("../.."), NodePath("../../../Enemy2"), NodePath("../../../Enemy")]
+Units = [NodePath("../.."), NodePath("../../../Enemy"), NodePath("../../../Enemy2")]
 Player = NodePath("../..")
 
 [node name="BeginCombat" type="Button" parent="Ally/Camera2D/TestingMenu"]

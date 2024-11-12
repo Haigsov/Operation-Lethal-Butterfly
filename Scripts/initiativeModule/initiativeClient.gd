@@ -6,7 +6,7 @@ class_name InitiativeClient;
 @export var initiativeBonus : int
 
 signal on_initiative_roll
-signal on_turn_start
+signal on_turn_start(parent)
 signal on_turn_change
 signal on_turn_end
 
@@ -23,7 +23,8 @@ func NotifyInitiativeRoll():
 	on_initiative_roll.emit()
 	
 func NotifyTurnStart():
-	on_turn_start.emit()
+	on_turn_start.emit(get_parent())
+	print(get_parent())
 
 func NotifyTurnChange():
 	on_turn_change.emit()
