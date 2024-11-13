@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Resources/Traits/trait_loudFootSteps.gd" id="6_pktyp"]
 [ext_resource type="Script" path="res://Scripts/Testing/manualMenuButtons.gd" id="7_jbv6h"]
 [ext_resource type="PackedScene" uid="uid://cr34xwlwf1fpr" path="res://Scenes/Enemy/basicEnemy.tscn" id="8_qcoda"]
+[ext_resource type="Script" path="res://Scripts/Menu/Testing/CellSelectorSpawner.gd" id="9_ul0yb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2kqjd"]
 texture = ExtResource("1_eknpr")
@@ -166,27 +167,6 @@ script = ExtResource("6_pktyp")
 name = "Unnamed Trait"
 description = "No Description"
 
-[sub_resource type="GDScript" id="GDScript_qvcn1"]
-script/source = "extends Node2D
-
-
-var selector : CellSelector
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	selector = CellSelector.new(
-		get_tree().root,
-		get_tree().current_scene.get_node(\"TileMap\"), 
-		func(v : Vector2i) : return true,
-		false
-	);
-	
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
-
 [node name="Node2D" type="Node2D"]
 scale = Vector2(5, 5)
 
@@ -203,11 +183,8 @@ script = ExtResource("2_c0cx8")
 script = ExtResource("3_klw0v")
 
 [node name="Ally" parent="." instance=ExtResource("4_3j0e7")]
-
-
-position = Vector2(79.4, -21)
-traits = Array[ExtResource("5_5q7n5")]([SubResource("Resource_oukhh")])
-
+position = Vector2(41.6, -24.4)
+traits = Array[ExtResource("5_w4vkd")]([SubResource("Resource_rcgy3")])
 
 [node name="Camera2D" type="Camera2D" parent="Ally"]
 
@@ -220,7 +197,7 @@ offset_right = 23.6857
 offset_bottom = 30.8571
 scale = Vector2(0.0245847, 0.0245847)
 script = ExtResource("7_jbv6h")
-Units = [NodePath("../.."), NodePath("../../../Enemy"), NodePath("../../../Enemy2")]
+Units = [NodePath("../.."), NodePath("../../../Enemy2"), NodePath("../../../Enemy")]
 Player = NodePath("../..")
 
 [node name="BeginCombat" type="Button" parent="Ally/Camera2D/TestingMenu"]
@@ -268,7 +245,7 @@ position = Vector2(57.8, 8.2)
 position = Vector2(104.4, 8)
 
 [node name="test" type="Node2D" parent="."]
-script = SubResource("GDScript_qvcn1")
+script = ExtResource("9_ul0yb")
 
 [connection signal="pressed" from="Ally/Camera2D/TestingMenu/BeginCombat" to="Ally/Camera2D/TestingMenu" method="_on_begin_combat_pressed"]
 [connection signal="pressed" from="Ally/Camera2D/TestingMenu/Move" to="Ally/Camera2D/TestingMenu" method="_on_move_pressed"]

@@ -26,30 +26,30 @@ var movement_allowance : int = 0;
 func _ready() -> void:
 	add_to_group("units");
 	
-	for t in traits:
+	for t : TraitBase in traits:
 		t.enable(self);
 		
-	_updatePathing();
-	
-	gridMovementModule.on_stop.connect(func(): _updatePathing());
-	initiativeModule.on_turn_start.connect(func(): _updatePathing());
 	#print(stats.toString());	
 	initiativeModule.on_turn_start.connect(func(): movement_allowance = 5);
 
 	initiativeModule.initiativeName = "GenericUnit"
 
-func move(destination : Vector2i) -> void:
+
+#moves a unit, returns 
+func move(destination : Vector2i) -> bool:
 	var new_movement_allowance = gridMovementModule.move_limited(destination, movement_allowance);
 	if (new_movement_allowance != -1): #valid movement
 		movement_allowance = new_movement_allowance;
-		
+	else:
+		return false;
+	return true;
 	
-func _updatePathing():
-	var arr : Array[Vector2i] = []; 
-	for unit : Unit in get_tree().get_nodes_in_group("units"):
-		arr.append(unit.gridMovementModule.get_current_grid_location());
-	gridMovementModule.set_non_walkable_cells(arr);
-	
+
 func _exit_tree():
 	for t in traits:
 		t.disable(self);
+
+func get_cell_position() -> Vector2i :
+	return gridMovementModule.get_current_grid_location();
+func get_distance_to(cell : Vector2i) :
+	return gridMovementModule.get_current_grid_location().distance_to(cell);
