@@ -6,6 +6,8 @@ var _entries : Array[InitiativeEntry] = []
 
 static var instance : InitiativeTracker;
 
+var current_active_unit : Unit
+
 var is_combat_active : bool = false;
 
 class InitiativeEntry:
@@ -59,6 +61,7 @@ func start_combat(clients: Array[InitiativeClient]):
 	while (_entries.size() > 0 && is_combat_active):
 		_debugPrint();
 		
+		_entries[0].client.on_turn_start.connect(set_active_unit)
 		_entries[0].client.NotifyTurnStart();
 
 		await _next_turn_signal;
@@ -120,3 +123,9 @@ func _debugPrint():
 			first = false
 		else:
 			print("%s : %s (+%s) " % [entry.name, entry.value-entry.bonus,entry.bonus])
+			
+func set_active_unit(unit):
+	current_active_unit = unit
+
+func get_active_unit():
+	return current_active_unit

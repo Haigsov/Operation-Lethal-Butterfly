@@ -176,7 +176,8 @@ script = ExtResource("2_c0cx8")
 script = ExtResource("3_klw0v")
 
 [node name="Ally" parent="." instance=ExtResource("4_3j0e7")]
-
+position = Vector2(79.4, -21)
+traits = Array[ExtResource("5_5q7n5")]([SubResource("Resource_oukhh")])
 [node name="Camera2D" type="Camera2D" parent="Ally"]
 
 [node name="TestingMenu" type="Control" parent="Ally/Camera2D" node_paths=PackedStringArray("Units", "Player")]
