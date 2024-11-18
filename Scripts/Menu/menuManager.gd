@@ -1,17 +1,20 @@
-extends Node
+extends Node2D
 
 
 class_name MenuManager;
 
-var _menu_stack = Array[MenuBase];
+static var instance : MenuManager;
 
+var Camera : Camera2D;
 
-func display(m : MenuBase):
-	_menu_stack.push_back(m);
-	m.display();
-	m.on_close.connect(_current_menu_closed);
+func _process(delta: float) -> void: #menus follow the camera
+	#global_position = Camera.global_position;
+	pass
+func _ready() -> void:
+	Camera = get_viewport().get_camera_2d();
+	instance = self;
 
-func _current_menu_closed(back : int):
-	if _menu_stack.size() - back < 0:
-		pass
+func displayCombatMenu(ally : Ally):
+	var pos : Vector2 = Vector2(get_viewport_rect().size.x,0);
+	await CombatMenu.new(self, ally).display_menu(pos);
 	

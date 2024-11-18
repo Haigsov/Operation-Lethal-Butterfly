@@ -5,29 +5,34 @@ class_name CellSelector
 var tilemap : TileMapLayer;
 var criteria : Callable;
 
-var drawArrow : bool;
+var doArrows : bool;
 var arrowOrigin : Vector2i;
 var line : Line2D;
 var lastHovered : Vector2i;
 
 signal cell_selected(Vector2i)
 
-func _init(parent : Node, tilemap : TileMapLayer, criteria : Callable, drawArrow : bool, arrowOrigin : Vector2i = Vector2i.ZERO):
+func _init(parent : Node, criteria : Callable):
+	tilemap = parent.get_tree().current_scene.get_node("TileMap");
 	self.tilemap = tilemap;
 	self.criteria = criteria;
-	self.drawArrow = drawArrow;
-	self.arrowOrigin = arrowOrigin;
-	
-	if drawArrow:
-		line = Line2D.new();
-		line.width = 1;
-		line.default_color = Color.RED;
-		tilemap.add_child(line);
-	
 	parent.add_child(self);
 	
+func drawArrows(doArrows : bool, arrowOrigin : Vector2i = Vector2i.ZERO, width : int = 1, color : Color = Color.RED):
+	self.doArrows = doArrows;
+	self.arrowOrigin = arrowOrigin;
+	if doArrows:
+		line = Line2D.new();
+		line.width = width;
+		line.default_color = color;
+		tilemap.add_child(line);
+	else:
+		line.queue_free()
+		line = null;
+
+	
 func _process(delta: float) -> void:
-	if (!drawArrow):
+	if (!doArrows):
 		return;
 	var hover = tilemap.local_to_map(tilemap.get_local_mouse_position());
 	if hover == lastHovered: 
@@ -42,7 +47,8 @@ func _process(delta: float) -> void:
 	
 	
 func _exit_tree() -> void:
-	line.queue_free();	
+	if (line !=null && !line.is_queued_for_deletion()):
+		line.queue_free();	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if (!event.is_action_pressed("move")): 

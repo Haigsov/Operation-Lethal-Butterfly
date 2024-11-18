@@ -49,6 +49,11 @@ func _exit_tree():
 	for t in traits:
 		t.disable(self);
 
+func end_turn():
+	if (InitiativeTracker.instance.get_current_turn() == initiativeModule):
+		InitiativeTracker.instance.next_turn();
+
+
 func get_cell_position() -> Vector2i :
 	return gridMovementModule.get_current_grid_location();
 func get_distance_to(cell : Vector2i) :
