@@ -106,7 +106,13 @@ func _roll_initiative(clients : Array[InitiativeClient]):
 			entry.client.NotifyInitiativeRoll();
 		
 	
-
+func get_entries() -> Array[InitiativeEntry]:
+	return _entries;
+	
+func get_current_turn() -> InitiativeClient:
+	if (_entries.size() > 0):
+		return _entries[0].client;
+	return null;
 func _debugPrint():
 	
 	print("------------")

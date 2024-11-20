@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cm2dld5vxk25u"]
+
+[node name="CombatMenu" type="Control"]
+layout_direction = 2
+layout_mode = 3
+anchors_preset = 0

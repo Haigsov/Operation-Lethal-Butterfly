@@ -10,8 +10,6 @@ extends Node
 var awaitingMove : bool = false;
 
 @onready var beginCombatBtn = $BeginCombat
-@onready var moveBtn = $Move
-@onready var endTurnBtn = $"End Turn"
 @onready var endCombatBtn = $"End Combat"
 
 
@@ -20,9 +18,7 @@ signal _clicked_on_tile(Vector2i);
 func _ready():
 	tile_map = get_tree().current_scene.get_node("TileMap");
 	
-	moveBtn.disabled =  true;
 	endCombatBtn.disabled = true;
-	endTurnBtn.disabled = true;
 
 func _unhandled_input(event: InputEvent) -> void:
 	if (!event.is_action_pressed("move")):
@@ -38,8 +34,6 @@ func _on_begin_combat_pressed() -> void:
 	Units[0].initiativeModule.start_combat(Units);
 	
 	beginCombatBtn.disabled = true;
-	moveBtn.disabled = false;
-	endTurnBtn.disabled = false;
 	endCombatBtn.disabled = false;
 
 func _on_move_pressed() -> void:
@@ -52,9 +46,11 @@ func _on_move_pressed() -> void:
 	
 	var successfulMovement : bool = false;
 	while !successfulMovement:
-		var dest = 	await CellSelector.new(get_tree().root, tile_map, 
-			(func(v : Vector2i) -> bool : return Player.get_distance_to(v) <= Player.movement_allowance),
-			true, Player.get_cell_position()).cell_selected;
+		
+		var cellSelector : CellSelector = await CellSelector.new(get_tree().root,  
+			(func(v : Vector2i) -> bool : return Player.get_distance_to(v) <= Player.movement_allowance));
+		cellSelector.drawArrows(true, Player.get_cell_position());
+		var dest : Vector2i = await cellSelector.cell_selected;
 		successfulMovement = Player.move(dest);
 		print(successfulMovement);
 	await Player.gridMovementModule.on_stop;
@@ -67,8 +63,6 @@ func _on_end_combat_pressed() -> void:
 	Player.gridMovementModule.is_click_to_move_enabled = true;
 	
 	beginCombatBtn.disabled = false;
-	moveBtn.disabled = true;
-	endTurnBtn.disabled = true;
 	endCombatBtn.disabled = true;
 	
 	InitiativeTracker.instance.end_combat()

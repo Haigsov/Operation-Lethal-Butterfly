@@ -9,3 +9,8 @@ func _ready():
 	super._ready();
 	initiativeModule.initiativeName = "GenericAlly"
 	initiativeModule.on_turn_start.connect(func() : textWriter.spawn_toast(get_tree().root, global_position + Vector2(0, -32), "It's my turn!", Color.RED));
+	initiativeModule.on_turn_start.connect(_turnStart);
+
+func _turnStart():
+	print("Displaying Menu")
+	MenuManager.instance.displayCombatMenu(self);
