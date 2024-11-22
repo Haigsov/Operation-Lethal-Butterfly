@@ -13,4 +13,4 @@ func _ready():
 
 func _turnStart():
 	print("Displaying Menu")
-	MenuManager.instance.displayCombatMenu(self);
+	MenuManager.instance.displayCombatMenu([self]);

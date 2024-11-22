@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://dm8d3w5v1q0ev"
+path="res://.godot/imported/HOTBAR_icon_hover_click_mask.bmp-50bed5ef55c09dab36461817a62d9e60.res"
+
+[deps]
+
+source_file="res://Art/HUD/HOTBAR_icon_hover_click_mask.bmp"
+dest_files=["res://.godot/imported/HOTBAR_icon_hover_click_mask.bmp-50bed5ef55c09dab36461817a62d9e60.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

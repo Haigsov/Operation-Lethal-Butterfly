@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://dmw063rrysv1"
+path="res://.godot/imported/HOTBAR_end_turn_hover_click_mask.bmp-3bd8eb3285bf2661176207f09c9e6fd6.res"
+
+[deps]
+
+source_file="res://Art/HUD/HOTBAR_end_turn_hover_click_mask.bmp"
+dest_files=["res://.godot/imported/HOTBAR_end_turn_hover_click_mask.bmp-3bd8eb3285bf2661176207f09c9e6fd6.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

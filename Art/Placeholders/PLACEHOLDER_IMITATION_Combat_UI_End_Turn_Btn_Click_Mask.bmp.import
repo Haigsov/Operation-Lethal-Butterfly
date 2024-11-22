@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://bxd6e27s8x8w3"
+path="res://.godot/imported/PLACEHOLDER_IMITATION_Combat_UI_End_Turn_Btn_Click_Mask.bmp-0379eb0853ca38424fd89f451d989ca2.res"
+
+[deps]
+
+source_file="res://Art/Placeholders/PLACEHOLDER_IMITATION_Combat_UI_End_Turn_Btn_Click_Mask.bmp"
+dest_files=["res://.godot/imported/PLACEHOLDER_IMITATION_Combat_UI_End_Turn_Btn_Click_Mask.bmp-0379eb0853ca38424fd89f451d989ca2.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

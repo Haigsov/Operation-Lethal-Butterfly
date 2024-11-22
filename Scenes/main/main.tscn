@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Resources/Traits/trait_loudFootSteps.gd" id="5_hswgu"]
 [ext_resource type="Script" path="res://Scripts/Testing/manualMenuButtons.gd" id="7_jbv6h"]
 [ext_resource type="PackedScene" uid="uid://cr34xwlwf1fpr" path="res://Scenes/Enemy/basicEnemy.tscn" id="8_qcoda"]
-[ext_resource type="Script" path="res://Scripts/Menu/menuManager.gd" id="9_jwnww"]
+[ext_resource type="PackedScene" uid="uid://d2e1mw2mx3uk4" path="res://Scenes/Menu/menu_manager.tscn" id="9_gomv5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2kqjd"]
 texture = ExtResource("1_eknpr")
@@ -176,14 +176,13 @@ tile_map_data = PackedByteArray("AAD6//r/AAAAAAAAAAD6//z/AAAAAAAAAAD6//3/AAAOAAA
 tile_set = SubResource("TileSet_0hbqf")
 
 [node name="PathingManager" type="Node2D" parent="."]
-scale = Vector2(1, 1)
 script = ExtResource("2_c0cx8")
 
 [node name="InitiativeTracker" type="Node2D" parent="."]
 script = ExtResource("3_klw0v")
 
 [node name="Ally" parent="." instance=ExtResource("4_3j0e7")]
-position = Vector2(79.4, -21)
+position = Vector2(-23.2, 23.6)
 traits = Array[ExtResource("5_5q7n5")]([SubResource("Resource_oukhh")])
 
 [node name="Camera2D" type="Camera2D" parent="Ally"]
@@ -210,24 +209,6 @@ scale = Vector2(1.35826, 1.35826)
 mouse_default_cursor_shape = 2
 text = "Manual Start Combat"
 
-[node name="Move" type="Button" parent="Ally/Camera2D/TestingMenu"]
-layout_mode = 0
-offset_left = -46.4859
-offset_top = 46.4867
-offset_right = 129.514
-offset_bottom = 80.4867
-scale = Vector2(1.335, 1.335)
-text = "Move"
-
-[node name="End Turn" type="Button" parent="Ally/Camera2D/TestingMenu"]
-layout_mode = 0
-offset_left = -35.0
-offset_top = 114.0
-offset_right = 135.0
-offset_bottom = 151.0
-scale = Vector2(1.345, 1.345)
-text = "End Turn"
-
 [node name="End Combat" type="Button" parent="Ally/Camera2D/TestingMenu"]
 layout_mode = 0
 offset_left = -28.0
@@ -246,10 +227,7 @@ position = Vector2(104.4, 8)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="MenuManager" type="Node2D" parent="CanvasLayer"]
-script = ExtResource("9_jwnww")
+[node name="MenuManager" parent="CanvasLayer" instance=ExtResource("9_gomv5")]
 
 [connection signal="pressed" from="Ally/Camera2D/TestingMenu/BeginCombat" to="Ally/Camera2D/TestingMenu" method="_on_begin_combat_pressed"]
-[connection signal="pressed" from="Ally/Camera2D/TestingMenu/Move" to="Ally/Camera2D/TestingMenu" method="_on_move_pressed"]
-[connection signal="pressed" from="Ally/Camera2D/TestingMenu/End Turn" to="Ally/Camera2D/TestingMenu" method="_on_end_turn_pressed"]
 [connection signal="pressed" from="Ally/Camera2D/TestingMenu/End Combat" to="Ally/Camera2D/TestingMenu" method="_on_end_combat_pressed"]

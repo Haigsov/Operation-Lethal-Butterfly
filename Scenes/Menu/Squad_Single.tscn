@@ -1,0 +1,123 @@
+[gd_scene load_steps=7 format=3 uid="uid://by5t3cbicovb0"]
+
+[ext_resource type="Script" path="res://Scripts/Menu/HUD/HUD_Squad_Single.gd" id="1_b1opx"]
+[ext_resource type="Texture2D" uid="uid://d2pa2g7p1x7aa" path="res://Art/HUD/SQUAD_active_squadmate_frame.png" id="2_4yvj8"]
+[ext_resource type="Texture2D" uid="uid://bar3p8jo0mi8" path="res://Art/HUD/SQUAD_portrait_frame.png" id="3_dsaf8"]
+[ext_resource type="Texture2D" uid="uid://cy5y0ct3wsmm2" path="res://Art/Placeholders/PLACEHOLDER_Ally_portrait.png" id="4_pytfe"]
+[ext_resource type="Texture2D" uid="uid://blnmr1o62p2a2" path="res://Art/HUD/SQUAD_health_icon.png" id="5_0ukm1"]
+[ext_resource type="Texture2D" uid="uid://cl702tj4bca0n" path="res://Art/HUD/SQUAD_health_bar_single.png" id="6_2qgfn"]
+
+[node name="AllyDisplay" type="Control"]
+custom_minimum_size = Vector2(107, 112)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1813.0
+offset_bottom = -968.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b1opx")
+hp = 6
+
+[node name="ActiveFrame" type="TextureRect" parent="."]
+visible = false
+layout_mode = 2
+offset_left = -1.0
+offset_right = 105.0
+offset_bottom = 114.0
+texture = ExtResource("2_4yvj8")
+
+[node name="PortraitFrame" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 7.0
+offset_top = 16.0
+offset_right = 97.0
+offset_bottom = 106.0
+texture = ExtResource("3_dsaf8")
+
+[node name="PortraitClipMask" type="TextureRect" parent="PortraitFrame"]
+clip_children = 1
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 89.0
+offset_bottom = 89.0
+texture = ExtResource("3_dsaf8")
+expand_mode = 1
+
+[node name="Portrait" type="TextureRect" parent="PortraitFrame/PortraitClipMask"]
+layout_mode = 2
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 89.0
+offset_bottom = 89.0
+texture = ExtResource("4_pytfe")
+expand_mode = 1
+
+[node name="Heart" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 5.0
+offset_top = 7.0
+offset_right = 20.0
+offset_bottom = 21.0
+texture = ExtResource("5_0ukm1")
+
+[node name="HealthBar" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 22.0
+offset_top = 7.0
+offset_right = 99.0
+offset_bottom = 16.0
+scale = Vector2(0.975, 0.975)
+theme_override_constants/separation = 3
+
+[node name="Pip1" type="TextureRect" parent="HealthBar"]
+layout_mode = 2
+texture = ExtResource("6_2qgfn")
+stretch_mode = 2
+
+[node name="Pip2" type="TextureRect" parent="HealthBar"]
+layout_mode = 2
+texture = ExtResource("6_2qgfn")
+stretch_mode = 2
+
+[node name="Pip3" type="TextureRect" parent="HealthBar"]
+layout_mode = 2
+texture = ExtResource("6_2qgfn")
+stretch_mode = 2
+
+[node name="Pip4" type="TextureRect" parent="HealthBar"]
+layout_mode = 2
+texture = ExtResource("6_2qgfn")
+stretch_mode = 2
+
+[node name="Pip5" type="TextureRect" parent="HealthBar"]
+layout_mode = 2
+texture = ExtResource("6_2qgfn")
+stretch_mode = 2
+
+[node name="Pip6" type="TextureRect" parent="HealthBar"]
+layout_mode = 2
+texture = ExtResource("6_2qgfn")
+stretch_mode = 2
+
+[node name="Pip7" type="TextureRect" parent="HealthBar"]
+layout_mode = 2
+texture = ExtResource("6_2qgfn")
+stretch_mode = 2
+
+[node name="Pip8" type="TextureRect" parent="HealthBar"]
+layout_mode = 2
+texture = ExtResource("6_2qgfn")
+stretch_mode = 2
+
+[node name="Pip9" type="TextureRect" parent="HealthBar"]
+layout_mode = 2
+texture = ExtResource("6_2qgfn")
+stretch_mode = 2
+
+[node name="Pip10" type="TextureRect" parent="HealthBar"]
+layout_mode = 2
+texture = ExtResource("6_2qgfn")
+stretch_mode = 2

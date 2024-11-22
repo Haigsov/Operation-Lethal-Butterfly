@@ -1,0 +1,664 @@
+[gd_scene load_steps=35 format=3 uid="uid://d2e1mw2mx3uk4"]
+
+[ext_resource type="Script" path="res://Scripts/Menu/menuManager.gd" id="1_r0xe6"]
+[ext_resource type="PackedScene" uid="uid://by5t3cbicovb0" path="res://Scenes/Menu/Squad_Single.tscn" id="2_ah2vn"]
+[ext_resource type="Texture2D" uid="uid://ba8d412oxxdn0" path="res://Art/HUD/HUD_Shadow.png" id="2_e1lgd"]
+[ext_resource type="Texture2D" uid="uid://cuily7k4exr48" path="res://Art/HUD/HOTBAR_frame.png" id="3_6sqrn"]
+[ext_resource type="Script" path="res://Scripts/Menu/HUD/HUD_Hotbar.gd" id="3_av873"]
+[ext_resource type="FontFile" uid="uid://bjv0pne18nqxc" path="res://Art/Fonts/zekton rg.otf" id="3_tk4w4"]
+[ext_resource type="Texture2D" uid="uid://nuxw3lkfso3x" path="res://Art/HUD/HOTBAR_icon_hover.png" id="4_d6755"]
+[ext_resource type="BitMap" uid="uid://dm8d3w5v1q0ev" path="res://Art/HUD/HOTBAR_icon_hover_click_mask.bmp" id="5_idedd"]
+[ext_resource type="Texture2D" uid="uid://4aeopo2iyex6" path="res://Art/HUD/HOTBAR_trait_icon.png" id="5_mjh14"]
+[ext_resource type="Texture2D" uid="uid://desrrvnsb8mjy" path="res://Art/HUD/HOTBAR_items_icon.png" id="6_afu5q"]
+[ext_resource type="Texture2D" uid="uid://bm3mny84uaq3o" path="res://Art/HUD/HOTBAR_move_icon.png" id="7_242qc"]
+[ext_resource type="Texture2D" uid="uid://tks64efovepr" path="res://Art/HUD/HOTBAR_attack_icon.png" id="8_yrw6f"]
+[ext_resource type="Texture2D" uid="uid://hiefayk00j2j" path="res://Art/HUD/HOTBAR_end_turn_icon.png" id="10_ky1h7"]
+[ext_resource type="Texture2D" uid="uid://c6qvxn6lk88g6" path="res://Art/HUD/HOTBAR_end_turn_hover.png" id="10_phqqe"]
+[ext_resource type="BitMap" uid="uid://dmw063rrysv1" path="res://Art/HUD/HOTBAR_end_turn_hover_click_mask.bmp" id="11_kb141"]
+[ext_resource type="Script" path="res://Scripts/Menu/HUD/HUD_Squad_Active.gd" id="14_fcrt0"]
+[ext_resource type="Texture2D" uid="uid://bwo4td4rcng5w" path="res://Art/HUD/HUD_portrait_frame.png" id="14_s6f0b"]
+[ext_resource type="Texture2D" uid="uid://cy5y0ct3wsmm2" path="res://Art/Placeholders/PLACEHOLDER_Ally_portrait.png" id="15_cg07c"]
+[ext_resource type="Texture2D" uid="uid://c5slfmaukmsed" path="res://Art/HUD/HUD_heart.png" id="16_o74tc"]
+[ext_resource type="Texture2D" uid="uid://cpo8kncv00p2p" path="res://Art/HUD/HUD_health_ap_frame.png" id="17_2axwg"]
+[ext_resource type="Texture2D" uid="uid://bwx16uanxnkon" path="res://Art/HUD/HUD_health_empty.png" id="18_36eec"]
+[ext_resource type="Texture2D" uid="uid://c1fxks2n1xu30" path="res://Art/HUD/HUD_health_full.png" id="19_owjjq"]
+[ext_resource type="Texture2D" uid="uid://xuenh36ou7pl" path="res://Art/HUD/HUD_AP_upper_empty.png" id="20_m26uy"]
+[ext_resource type="Texture2D" uid="uid://d18ib2lrhvain" path="res://Art/HUD/HUD_AP_lower_empty.png" id="21_glri2"]
+[ext_resource type="Texture2D" uid="uid://cjr6v35rl3x28" path="res://Art/HUD/HUD_AP_upper_full.png" id="22_74ipi"]
+[ext_resource type="Texture2D" uid="uid://o3olcmq0bode" path="res://Art/HUD/HUD_AP_text.png" id="23_7jx3c"]
+[ext_resource type="Texture2D" uid="uid://dgghn6i2knmi7" path="res://Art/HUD/HUD_AP_lower_full.png" id="23_txhox"]
+[ext_resource type="Texture2D" uid="uid://2lpjxo4hmira" path="res://Art/HUD/HUD_toxic_icon.png" id="24_0upi1"]
+[ext_resource type="Texture2D" uid="uid://ccoy2dwgiyecu" path="res://Art/HUD/HUD_bleed_icon.png" id="25_364l4"]
+[ext_resource type="Texture2D" uid="uid://calv524i1iva6" path="res://Art/HUD/HUD_electric_icon.png" id="26_1ilhg"]
+[ext_resource type="Texture2D" uid="uid://b5bovkp00o8v0" path="res://Art/HUD/HUD_melee_placement_frame.png" id="31_utuq2"]
+[ext_resource type="Texture2D" uid="uid://dsw20oliup3rc" path="res://Art/HUD/HUD_equipped_weapon_placement_frame.png" id="32_kqxxr"]
+[ext_resource type="Texture2D" uid="uid://cgrfb1gxvw0uu" path="res://Art/HUD/HUD_secondary_weapon_placement_frame.png" id="33_j4fbb"]
+[ext_resource type="Texture2D" uid="uid://myyegci3oabm" path="res://Art/HUD/HUD_weapon_selector_divider.png" id="34_v74qw"]
+
+[node name="MenuManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_r0xe6")
+
+[node name="Squad" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -275.0
+offset_right = 125.0
+offset_bottom = 185.0
+grow_vertical = 2
+scale = Vector2(1.25, 1.25)
+pivot_offset = Vector2(0, 230)
+alignment = 1
+
+[node name="AllyDisplay1" parent="Squad" instance=ExtResource("2_ah2vn")]
+layout_mode = 2
+size_flags_vertical = 6
+hp = 10
+
+[node name="AllyDisplay2" parent="Squad" instance=ExtResource("2_ah2vn")]
+layout_mode = 2
+size_flags_vertical = 6
+hp = 10
+
+[node name="AllyDisplay3" parent="Squad" instance=ExtResource("2_ah2vn")]
+layout_mode = 2
+size_flags_vertical = 6
+hp = 10
+
+[node name="AllyDisplay4" parent="Squad" instance=ExtResource("2_ah2vn")]
+layout_mode = 2
+size_flags_vertical = 6
+hp = 10
+
+[node name="Hotbar" type="Control" parent="."]
+layout_mode = 2
+anchors_preset = 0
+script = ExtResource("3_av873")
+
+[node name="HUDLabel" type="RichTextLabel" parent="Hotbar"]
+layout_mode = 0
+offset_left = 843.0
+offset_top = 937.0
+offset_right = 1073.0
+offset_bottom = 960.0
+theme_override_fonts/normal_font = ExtResource("3_tk4w4")
+bbcode_enabled = true
+text = "[center]HUD Label[/center]"
+scroll_active = false
+autowrap_mode = 0
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="HUDShadow" type="TextureRect" parent="Hotbar"]
+layout_mode = 0
+offset_left = -81.0
+offset_top = 915.0
+offset_right = 2001.0
+offset_bottom = 1133.0
+texture = ExtResource("2_e1lgd")
+
+[node name="HotbarFrame" type="TextureRect" parent="Hotbar"]
+layout_mode = 2
+offset_left = 727.0
+offset_top = 909.0
+offset_right = 1187.0
+offset_bottom = 1106.0
+texture = ExtResource("3_6sqrn")
+
+[node name="TraitsBtn" type="TextureButton" parent="Hotbar"]
+layout_mode = 2
+offset_left = 797.0
+offset_top = 958.0
+offset_right = 908.0
+offset_bottom = 999.0
+texture_hover = ExtResource("4_d6755")
+texture_click_mask = ExtResource("5_idedd")
+stretch_mode = 3
+
+[node name="ButtonIcon" type="TextureRect" parent="Hotbar/TraitsBtn"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 35.0
+offset_top = -2.0
+offset_right = 75.0
+offset_bottom = 38.0
+texture = ExtResource("5_mjh14")
+
+[node name="ItemsBtn" type="TextureButton" parent="Hotbar"]
+layout_mode = 2
+offset_left = 1006.0
+offset_top = 958.0
+offset_right = 1117.0
+offset_bottom = 999.0
+texture_hover = ExtResource("4_d6755")
+texture_click_mask = ExtResource("5_idedd")
+stretch_mode = 3
+
+[node name="ButtonIcon" type="TextureRect" parent="Hotbar/ItemsBtn"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 35.0
+offset_top = -2.0
+offset_right = 75.0
+offset_bottom = 38.0
+texture = ExtResource("6_afu5q")
+
+[node name="MoveBtn" type="TextureButton" parent="Hotbar"]
+layout_mode = 2
+offset_left = 797.0
+offset_top = 1016.0
+offset_right = 908.0
+offset_bottom = 1057.0
+texture_hover = ExtResource("4_d6755")
+texture_click_mask = ExtResource("5_idedd")
+stretch_mode = 3
+flip_v = true
+
+[node name="ButtonIcon" type="TextureRect" parent="Hotbar/MoveBtn"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 35.0
+offset_top = 2.0
+offset_right = 76.0
+offset_bottom = 42.0
+texture = ExtResource("7_242qc")
+
+[node name="ShootBtn" type="TextureButton" parent="Hotbar"]
+layout_mode = 2
+offset_left = 1006.0
+offset_top = 1016.0
+offset_right = 1117.0
+offset_bottom = 1057.0
+texture_hover = ExtResource("4_d6755")
+texture_click_mask = ExtResource("5_idedd")
+stretch_mode = 3
+flip_v = true
+
+[node name="ButtonIcon" type="TextureRect" parent="Hotbar/ShootBtn"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 35.0
+offset_top = 2.0
+offset_right = 76.0
+offset_bottom = 42.0
+texture = ExtResource("8_yrw6f")
+
+[node name="EndTurnBtn" type="TextureButton" parent="Hotbar"]
+layout_mode = 2
+offset_left = 883.0
+offset_top = 960.5
+offset_right = 1031.0
+offset_bottom = 1054.5
+texture_hover = ExtResource("10_phqqe")
+texture_click_mask = ExtResource("11_kb141")
+
+[node name="TextureRect" type="TextureRect" parent="Hotbar/EndTurnBtn"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 15.5
+offset_right = 107.0
+offset_bottom = 78.5
+texture = ExtResource("10_ky1h7")
+
+[node name="ActiveSquadmate" type="Control" parent="."]
+anchors_preset = 0
+offset_top = 937.0
+offset_right = 40.0
+offset_bottom = 977.0
+script = ExtResource("14_fcrt0")
+hp = 10
+maxHP = 10
+ap = 9
+maxAP = 9
+
+[node name="PortraitFrame" type="TextureRect" parent="ActiveSquadmate"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 22.0
+offset_right = 134.0
+offset_bottom = 136.0
+texture = ExtResource("14_s6f0b")
+
+[node name="PortraitClipMask" type="TextureRect" parent="ActiveSquadmate/PortraitFrame"]
+clip_children = 1
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 112.0
+offset_bottom = 113.0
+texture = ExtResource("14_s6f0b")
+expand_mode = 1
+
+[node name="Portrait" type="TextureRect" parent="ActiveSquadmate/PortraitFrame/PortraitClipMask"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 120.0
+offset_bottom = 120.0
+texture = ExtResource("15_cg07c")
+expand_mode = 1
+
+[node name="SquadmateName" type="RichTextLabel" parent="ActiveSquadmate"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -2.0
+offset_right = 155.0
+offset_bottom = 22.0
+theme_override_fonts/normal_font = ExtResource("3_tk4w4")
+bbcode_enabled = true
+text = "[center]Donqui[/center]"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Heart" type="TextureRect" parent="ActiveSquadmate"]
+layout_mode = 0
+offset_left = 139.0
+offset_top = 101.0
+offset_right = 161.0
+offset_bottom = 121.0
+texture = ExtResource("16_o74tc")
+
+[node name="Bar Frame" type="TextureRect" parent="ActiveSquadmate"]
+layout_mode = 0
+offset_left = 153.0
+offset_top = 103.0
+offset_right = 342.0
+offset_bottom = 136.0
+texture = ExtResource("17_2axwg")
+
+[node name="HealthBar" type="Control" parent="ActiveSquadmate"]
+anchors_preset = 0
+offset_left = 166.0
+offset_top = 105.0
+offset_right = 166.0
+offset_bottom = 105.0
+
+[node name="Empty" type="HBoxContainer" parent="ActiveSquadmate/HealthBar"]
+layout_mode = 0
+offset_right = 176.0
+offset_bottom = 6.0
+
+[node name="Pip1" type="TextureRect" parent="ActiveSquadmate/HealthBar/Empty"]
+layout_mode = 2
+texture = ExtResource("18_36eec")
+
+[node name="Pip2" type="TextureRect" parent="ActiveSquadmate/HealthBar/Empty"]
+layout_mode = 2
+texture = ExtResource("18_36eec")
+
+[node name="Pip3" type="TextureRect" parent="ActiveSquadmate/HealthBar/Empty"]
+layout_mode = 2
+texture = ExtResource("18_36eec")
+
+[node name="Pip4" type="TextureRect" parent="ActiveSquadmate/HealthBar/Empty"]
+layout_mode = 2
+texture = ExtResource("18_36eec")
+
+[node name="Pip5" type="TextureRect" parent="ActiveSquadmate/HealthBar/Empty"]
+layout_mode = 2
+texture = ExtResource("18_36eec")
+
+[node name="Pip6" type="TextureRect" parent="ActiveSquadmate/HealthBar/Empty"]
+layout_mode = 2
+texture = ExtResource("18_36eec")
+
+[node name="Pip7" type="TextureRect" parent="ActiveSquadmate/HealthBar/Empty"]
+layout_mode = 2
+texture = ExtResource("18_36eec")
+
+[node name="Pip8" type="TextureRect" parent="ActiveSquadmate/HealthBar/Empty"]
+layout_mode = 2
+texture = ExtResource("18_36eec")
+
+[node name="Pip9" type="TextureRect" parent="ActiveSquadmate/HealthBar/Empty"]
+layout_mode = 2
+texture = ExtResource("18_36eec")
+
+[node name="Pip10" type="TextureRect" parent="ActiveSquadmate/HealthBar/Empty"]
+layout_mode = 2
+texture = ExtResource("18_36eec")
+
+[node name="Full" type="HBoxContainer" parent="ActiveSquadmate/HealthBar"]
+layout_mode = 0
+offset_right = 176.0
+offset_bottom = 6.0
+
+[node name="Pip1" type="TextureRect" parent="ActiveSquadmate/HealthBar/Full"]
+layout_mode = 2
+texture = ExtResource("19_owjjq")
+
+[node name="Pip2" type="TextureRect" parent="ActiveSquadmate/HealthBar/Full"]
+layout_mode = 2
+texture = ExtResource("19_owjjq")
+
+[node name="Pip3" type="TextureRect" parent="ActiveSquadmate/HealthBar/Full"]
+layout_mode = 2
+texture = ExtResource("19_owjjq")
+
+[node name="Pip4" type="TextureRect" parent="ActiveSquadmate/HealthBar/Full"]
+layout_mode = 2
+texture = ExtResource("19_owjjq")
+
+[node name="Pip5" type="TextureRect" parent="ActiveSquadmate/HealthBar/Full"]
+layout_mode = 2
+texture = ExtResource("19_owjjq")
+
+[node name="Pip6" type="TextureRect" parent="ActiveSquadmate/HealthBar/Full"]
+layout_mode = 2
+texture = ExtResource("19_owjjq")
+
+[node name="Pip7" type="TextureRect" parent="ActiveSquadmate/HealthBar/Full"]
+layout_mode = 2
+texture = ExtResource("19_owjjq")
+
+[node name="Pip8" type="TextureRect" parent="ActiveSquadmate/HealthBar/Full"]
+layout_mode = 2
+texture = ExtResource("19_owjjq")
+
+[node name="Pip9" type="TextureRect" parent="ActiveSquadmate/HealthBar/Full"]
+layout_mode = 2
+texture = ExtResource("19_owjjq")
+
+[node name="Pip10" type="TextureRect" parent="ActiveSquadmate/HealthBar/Full"]
+layout_mode = 2
+texture = ExtResource("19_owjjq")
+
+[node name="APBar" type="Control" parent="ActiveSquadmate"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 260.0
+offset_top = 114.0
+offset_right = 260.0
+offset_bottom = 135.0
+
+[node name="Label" type="TextureRect" parent="ActiveSquadmate/APBar"]
+layout_mode = 0
+offset_left = -91.0
+offset_top = 2.0
+offset_right = -68.0
+offset_bottom = 16.0
+texture = ExtResource("23_7jx3c")
+
+[node name="Empty" type="HBoxContainer" parent="ActiveSquadmate/APBar"]
+layout_mode = 0
+offset_left = -65.0
+offset_top = -1.0
+offset_right = 97.0
+offset_bottom = 20.0
+theme_override_constants/separation = 0
+
+[node name="Seg1" type="VBoxContainer" parent="ActiveSquadmate/APBar/Empty"]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Upper" type="TextureRect" parent="ActiveSquadmate/APBar/Empty/Seg1"]
+layout_mode = 2
+texture = ExtResource("20_m26uy")
+
+[node name="Lower" type="TextureRect" parent="ActiveSquadmate/APBar/Empty/Seg1"]
+layout_mode = 2
+texture = ExtResource("21_glri2")
+
+[node name="Seg2" type="VBoxContainer" parent="ActiveSquadmate/APBar/Empty"]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Upper" type="TextureRect" parent="ActiveSquadmate/APBar/Empty/Seg2"]
+layout_mode = 2
+texture = ExtResource("20_m26uy")
+
+[node name="Lower" type="TextureRect" parent="ActiveSquadmate/APBar/Empty/Seg2"]
+layout_mode = 2
+texture = ExtResource("21_glri2")
+
+[node name="Seg3" type="VBoxContainer" parent="ActiveSquadmate/APBar/Empty"]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Upper" type="TextureRect" parent="ActiveSquadmate/APBar/Empty/Seg3"]
+layout_mode = 2
+texture = ExtResource("20_m26uy")
+
+[node name="Lower" type="TextureRect" parent="ActiveSquadmate/APBar/Empty/Seg3"]
+layout_mode = 2
+texture = ExtResource("21_glri2")
+
+[node name="Seg4" type="VBoxContainer" parent="ActiveSquadmate/APBar/Empty"]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Upper" type="TextureRect" parent="ActiveSquadmate/APBar/Empty/Seg4"]
+layout_mode = 2
+texture = ExtResource("20_m26uy")
+
+[node name="Lower" type="TextureRect" parent="ActiveSquadmate/APBar/Empty/Seg4"]
+layout_mode = 2
+texture = ExtResource("21_glri2")
+
+[node name="Seg5" type="VBoxContainer" parent="ActiveSquadmate/APBar/Empty"]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Upper" type="TextureRect" parent="ActiveSquadmate/APBar/Empty/Seg5"]
+layout_mode = 2
+texture = ExtResource("20_m26uy")
+
+[node name="Lower" type="TextureRect" parent="ActiveSquadmate/APBar/Empty/Seg5"]
+layout_mode = 2
+texture = ExtResource("21_glri2")
+
+[node name="Seg6" type="VBoxContainer" parent="ActiveSquadmate/APBar/Empty"]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Upper" type="TextureRect" parent="ActiveSquadmate/APBar/Empty/Seg6"]
+layout_mode = 2
+texture = ExtResource("20_m26uy")
+
+[node name="Lower" type="TextureRect" parent="ActiveSquadmate/APBar/Empty/Seg6"]
+layout_mode = 2
+texture = ExtResource("21_glri2")
+
+[node name="Seg7" type="VBoxContainer" parent="ActiveSquadmate/APBar/Empty"]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Upper" type="TextureRect" parent="ActiveSquadmate/APBar/Empty/Seg7"]
+layout_mode = 2
+texture = ExtResource("20_m26uy")
+
+[node name="Lower" type="TextureRect" parent="ActiveSquadmate/APBar/Empty/Seg7"]
+layout_mode = 2
+texture = ExtResource("21_glri2")
+
+[node name="Full" type="HBoxContainer" parent="ActiveSquadmate/APBar"]
+layout_mode = 0
+offset_left = -65.0
+offset_top = -1.0
+offset_right = 97.0
+offset_bottom = 20.0
+theme_override_constants/separation = 0
+
+[node name="Seg1" type="VBoxContainer" parent="ActiveSquadmate/APBar/Full"]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Upper" type="TextureRect" parent="ActiveSquadmate/APBar/Full/Seg1"]
+modulate = Color(0, 1, 0.92549, 1)
+layout_mode = 2
+texture = ExtResource("22_74ipi")
+
+[node name="Lower" type="TextureRect" parent="ActiveSquadmate/APBar/Full/Seg1"]
+modulate = Color(0, 1, 0.92549, 1)
+layout_mode = 2
+texture = ExtResource("23_txhox")
+
+[node name="Seg2" type="VBoxContainer" parent="ActiveSquadmate/APBar/Full"]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Upper" type="TextureRect" parent="ActiveSquadmate/APBar/Full/Seg2"]
+modulate = Color(0, 1, 0.92549, 1)
+layout_mode = 2
+texture = ExtResource("22_74ipi")
+
+[node name="Lower" type="TextureRect" parent="ActiveSquadmate/APBar/Full/Seg2"]
+modulate = Color(0, 1, 0.92549, 1)
+layout_mode = 2
+texture = ExtResource("23_txhox")
+
+[node name="Seg3" type="VBoxContainer" parent="ActiveSquadmate/APBar/Full"]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Upper" type="TextureRect" parent="ActiveSquadmate/APBar/Full/Seg3"]
+modulate = Color(0, 1, 0.92549, 1)
+layout_mode = 2
+texture = ExtResource("22_74ipi")
+
+[node name="Lower" type="TextureRect" parent="ActiveSquadmate/APBar/Full/Seg3"]
+modulate = Color(0, 1, 0.92549, 1)
+layout_mode = 2
+texture = ExtResource("23_txhox")
+
+[node name="Seg4" type="VBoxContainer" parent="ActiveSquadmate/APBar/Full"]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Upper" type="TextureRect" parent="ActiveSquadmate/APBar/Full/Seg4"]
+modulate = Color(0, 1, 0.92549, 1)
+layout_mode = 2
+texture = ExtResource("22_74ipi")
+
+[node name="Lower" type="TextureRect" parent="ActiveSquadmate/APBar/Full/Seg4"]
+modulate = Color(0, 1, 0.92549, 1)
+layout_mode = 2
+texture = ExtResource("23_txhox")
+
+[node name="Seg5" type="VBoxContainer" parent="ActiveSquadmate/APBar/Full"]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Upper" type="TextureRect" parent="ActiveSquadmate/APBar/Full/Seg5"]
+modulate = Color(0, 1, 0.92549, 1)
+layout_mode = 2
+texture = ExtResource("22_74ipi")
+
+[node name="Lower" type="TextureRect" parent="ActiveSquadmate/APBar/Full/Seg5"]
+modulate = Color(0, 1, 0.92549, 1)
+layout_mode = 2
+texture = ExtResource("23_txhox")
+
+[node name="Seg6" type="VBoxContainer" parent="ActiveSquadmate/APBar/Full"]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Upper" type="TextureRect" parent="ActiveSquadmate/APBar/Full/Seg6"]
+modulate = Color(0, 1, 0.92549, 1)
+layout_mode = 2
+texture = ExtResource("22_74ipi")
+
+[node name="Lower" type="TextureRect" parent="ActiveSquadmate/APBar/Full/Seg6"]
+modulate = Color(0, 1, 0.92549, 1)
+layout_mode = 2
+texture = ExtResource("23_txhox")
+
+[node name="Seg7" type="VBoxContainer" parent="ActiveSquadmate/APBar/Full"]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Upper" type="TextureRect" parent="ActiveSquadmate/APBar/Full/Seg7"]
+modulate = Color(0, 1, 0.92549, 1)
+layout_mode = 2
+texture = ExtResource("22_74ipi")
+
+[node name="Lower" type="TextureRect" parent="ActiveSquadmate/APBar/Full/Seg7"]
+modulate = Color(0, 1, 0.92549, 1)
+layout_mode = 2
+texture = ExtResource("23_txhox")
+
+[node name="Effects" type="VBoxContainer" parent="ActiveSquadmate"]
+layout_mode = 0
+offset_left = 139.0
+offset_top = 23.0
+offset_right = 157.0
+offset_bottom = 94.0
+alignment = 2
+
+[node name="Toxic" type="TextureRect" parent="ActiveSquadmate/Effects"]
+layout_mode = 2
+texture = ExtResource("24_0upi1")
+
+[node name="Bleed" type="TextureRect" parent="ActiveSquadmate/Effects"]
+layout_mode = 2
+texture = ExtResource("25_364l4")
+
+[node name="Electric" type="TextureRect" parent="ActiveSquadmate/Effects"]
+layout_mode = 2
+texture = ExtResource("26_1ilhg")
+
+[node name="WeaponDisplay" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1595.0
+offset_top = 946.0
+offset_right = 1910.0
+offset_bottom = 1048.0
+
+[node name="MeleeWpnFrame" type="TextureRect" parent="WeaponDisplay"]
+layout_mode = 0
+offset_left = 101.0
+offset_top = -4.0
+offset_right = 180.0
+offset_bottom = 25.0
+texture = ExtResource("31_utuq2")
+
+[node name="EquippedWpnFrame" type="TextureRect" parent="WeaponDisplay"]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 29.0
+offset_right = 271.0
+offset_bottom = 85.0
+texture = ExtResource("32_kqxxr")
+
+[node name="SecondaryWpnFrame" type="TextureRect" parent="WeaponDisplay"]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 88.0
+offset_right = 180.0
+offset_bottom = 117.0
+texture = ExtResource("33_j4fbb")
+
+[node name="Divider" type="TextureRect" parent="WeaponDisplay"]
+layout_mode = 0
+offset_left = 82.0
+offset_top = -9.99999
+offset_right = 89.0
+offset_bottom = 123.0
+texture = ExtResource("34_v74qw")
+
+[connection signal="pressed" from="Hotbar/TraitsBtn" to="." method="_on_traits_btn_pressed"]
+[connection signal="pressed" from="Hotbar/ItemsBtn" to="." method="_on_traits_btn_pressed"]
+[connection signal="pressed" from="Hotbar/MoveBtn" to="." method="_on_traits_btn_pressed"]
+[connection signal="pressed" from="Hotbar/ShootBtn" to="." method="_on_traits_btn_pressed"]

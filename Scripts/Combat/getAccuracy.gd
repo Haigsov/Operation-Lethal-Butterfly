@@ -23,4 +23,3 @@ static func get_hit_chance(player: Node2D, enemy: Node2D) -> float:
 	var distance = get_distance_to_enemy(player, enemy)
 	var distance_factor = clamp(1.0 - (distance / max_distance), 0, 1)
 	return lerp(min_accuracy, max_accuracy, distance_factor)
-

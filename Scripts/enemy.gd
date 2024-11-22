@@ -62,9 +62,11 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	return
 	# Enters combat when player is detected
 	if raycast.is_colliding():
-			print("Player got detected!")
+			
+			#print("Player got detected!")
 			enemy_detection_combat_start()
 
 func superdumbai(_parent):
