@@ -176,7 +176,6 @@ tile_map_data = PackedByteArray("AAD6//r/AAAAAAAAAAD6//z/AAAAAAAAAAD6//3/AAAOAAA
 tile_set = SubResource("TileSet_0hbqf")
 
 [node name="PathingManager" type="Node2D" parent="."]
-scale = Vector2(1, 1)
 script = ExtResource("2_c0cx8")
 
 [node name="InitiativeTracker" type="Node2D" parent="."]

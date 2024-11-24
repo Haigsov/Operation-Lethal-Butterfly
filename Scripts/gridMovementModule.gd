@@ -44,11 +44,31 @@ func _unhandled_input(event: InputEvent) -> void:
 	if id_path.is_empty() == false:
 		current_id_path = id_path
 
+
+# Ignore till I get it working -Aaron
+#func get_adjacent_cell(destinationCell : Vector2i) -> Array:
+	#var adj1 = PathingManager.instance.get_id_path(tile_map.local_to_map(node.position), destinationCell + Vector2i(1,0))
+	#var adj2 = PathingManager.instance.get_id_path(tile_map.local_to_map(node.position), destinationCell + Vector2i(1,0))
+	#var adj3 = PathingManager.instance.get_id_path(tile_map.local_to_map(node.position), destinationCell + Vector2i(1,0))
+	#var adj4 = PathingManager.instance.get_id_path(tile_map.local_to_map(node.position), destinationCell + Vector2i(1,0))
+	#if((adj1.size() <= adj2.size() || adj2.size() == 0)):
+		#adj1
+	#return adj1;
+
+
 #move to a cell, returns movementAllowance - number of spaces moved, or -1 if not a valid path
 func move_limited(destinationCell : Vector2i, movementAllowance : int) -> int:
+	# Need to find out how to create path to beside occupied cell 
 	var path = PathingManager.instance.get_id_path(tile_map.local_to_map(node.position), destinationCell);
-	if (path == null || path.size()-1 > movementAllowance):
+	
+	##trying to get spaces next to occupied cell
+	#if(PathingManager.instance.is_cell_occupied(destinationCell)):
+		#path = get_adjacent_cell(destinationCell);
+	
+	if (path == null || movementAllowance <= 0):
 		return -1;
+	elif(path.size()-1 > movementAllowance):
+		path = path.slice(0,movementAllowance); #Create subpath from original path.
 	current_id_path = path;
 	
 	if (movementAllowance - (path.size()-1) < 0):

@@ -37,7 +37,7 @@ func _ready() -> void:
 
 #moves a unit, returns 
 func move(destination : Vector2i) -> bool:
-	var new_movement_allowance = gridMovementModule.move_limited(destination, movement_allowance);
+	var new_movement_allowance = gridMovementModule.move_limited(destination, 5); # temporarily set to 5
 	if (new_movement_allowance != -1): #valid movement
 		movement_allowance = new_movement_allowance;
 	else:

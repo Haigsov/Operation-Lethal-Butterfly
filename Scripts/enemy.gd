@@ -68,12 +68,26 @@ func _physics_process(_delta: float) -> void:
 			enemy_detection_combat_start()
 
 func superdumbai(_parent):
-	textWriter.spawn_toast(get_tree().root, global_position + Vector2(0, -32), "It's my turn!", Color.RED);
-	await get_tree().create_timer(1.5).timeout
-	textWriter.spawn_toast(get_tree().root, global_position + Vector2(0, -32), "But I dont have an AI yet...", Color.RED);
-	await get_tree().create_timer(1.5).timeout
-	textWriter.spawn_toast(get_tree().root, global_position + Vector2(0, -32), "So I'm just gonna end my turn now.", Color.RED);
-	await get_tree().create_timer(1.5).timeout
+	#textWriter.spawn_toast(get_tree().root, global_position + Vector2(0, -32), "It's my turn!", Color.RED);
+	#await get_tree().create_timer(1.5).timeout
+	#textWriter.spawn_toast(get_tree().root, global_position + Vector2(0, -32), "But I dont have an AI yet...", Color.RED);
+	#await get_tree().create_timer(1.5).timeout
+	#textWriter.spawn_toast(get_tree().root, global_position + Vector2(0, -32), "So I'm just gonna end my turn now.", Color.RED);
+	#await get_tree().create_timer(1.5).timeout
+	
+	#print(player.get_cell_position());
+	move(player.get_cell_position() + Vector2i(1,0));
+	textWriter.spawn_toast(get_tree().root, global_position + Vector2(0, -32), "Move towards player", Color.RED);
+	await get_tree().create_timer(1.5).timeout;
+	#move(gridMovementModule.get_current_grid_location() + Vector2i(0,-1));
+	#textWriter.spawn_toast(get_tree().root, global_position + Vector2(0, -32), "Move Up", Color.RED);
+	#await get_tree().create_timer(1.5).timeout;
+	#move(gridMovementModule.get_current_grid_location() + Vector2i(1,0));
+	#textWriter.spawn_toast(get_tree().root, global_position + Vector2(0, -32), "Move Right", Color.RED);
+	#await get_tree().create_timer(1.5).timeout;
+	#move(gridMovementModule.get_current_grid_location() + Vector2i(0,1));
+	#textWriter.spawn_toast(get_tree().root, global_position + Vector2(0, -32), "Move Down", Color.RED);
+	#await get_tree().create_timer(1.5).timeout;
 	initiativeModule.end_turn();
 
 
